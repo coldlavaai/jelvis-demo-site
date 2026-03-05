@@ -182,7 +182,7 @@ textarea:focus-visible,
 
 /* ── Utility ── */
 .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-.section-pad { padding: 100px 0; }
+.section-pad { padding: 116px 0; }
 
 .badge {
   display: inline-flex; align-items: center; gap: 8px;
@@ -204,7 +204,7 @@ textarea:focus-visible,
   font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(2rem, 4.5vw, 3rem);
   font-weight: 700; line-height: 1.15;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .section-sub {
@@ -342,7 +342,7 @@ nav .container {
   letter-spacing: -0.02em;
 }
 .nav-logo-text span { color: var(--green); }
-.nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+.nav-links { display: flex; align-items: center; gap: 40px; list-style: none; }
 .nav-links a {
   color: var(--text-secondary); text-decoration: none;
   font-size: 0.9rem; font-weight: 500;
@@ -405,9 +405,9 @@ nav:not(.scrolled) .mobile-toggle span { background: #ffffff; }
 }
 .hero h1 {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(2.8rem, 6vw, 4.2rem);
-  font-weight: 800; line-height: 1.08;
-  letter-spacing: -0.03em;
+  font-size: clamp(2.8rem, 6vw, 4.4rem);
+  font-weight: 800; line-height: 1.06;
+  letter-spacing: -0.035em;
   margin-bottom: 24px;
   animation: fadeUp 0.8s ease 0.15s both;
   color: #ffffff;
@@ -429,7 +429,7 @@ nav:not(.scrolled) .mobile-toggle span { background: #ffffff; }
   animation: fadeUp 0.8s ease 0.45s both;
 }
 .hero-stats-row {
-  display: flex; gap: 48px; margin-top: 64px;
+  display: flex; gap: 56px; margin-top: 72px;
   animation: fadeUp 0.8s ease 0.6s both;
 }
 .hero-stat { position: relative; }
@@ -441,11 +441,11 @@ nav:not(.scrolled) .mobile-toggle span { background: #ffffff; }
 .hero-stat:last-child::after { display: none; }
 .hero-stat-num {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 2rem; font-weight: 700; color: #4caf50;
+  font-size: 2.2rem; font-weight: 700; color: #4caf50;
 }
 .hero-stat-label {
-  font-size: 0.85rem; color: rgba(255,255,255,0.7);
-  margin-top: 2px;
+  font-size: 0.85rem; color: rgba(255,255,255,0.65);
+  margin-top: 4px; letter-spacing: 0.02em;
 }
 
 /* ── Services ── */
@@ -453,7 +453,7 @@ nav:not(.scrolled) .mobile-toggle span { background: #ffffff; }
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px; margin-top: 56px;
+  gap: 28px; margin-top: 64px;
 }
 .service-card {
   background: var(--white);
@@ -477,7 +477,7 @@ nav:not(.scrolled) .mobile-toggle span { background: #ffffff; }
   width: 100%; height: 180px; object-fit: cover;
 }
 .service-card-body {
-  padding: 28px 28px 32px;
+  padding: 32px 32px 36px;
 }
 .service-icon {
   width: 48px; height: 48px; border-radius: 12px;
@@ -492,8 +492,8 @@ nav:not(.scrolled) .mobile-toggle span { background: #ffffff; }
 }
 .service-card h3 {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.25rem; font-weight: 600;
-  margin-bottom: 12px;
+  font-size: 1.3rem; font-weight: 600;
+  margin-bottom: 14px;
 }
 .service-card p {
   color: var(--text-secondary); font-size: 0.95rem; line-height: 1.65;
@@ -556,7 +556,7 @@ nav:not(.scrolled) .mobile-toggle span { background: #ffffff; }
 /* ── Dark Stats Band ── */
 .stats-band {
   background: var(--dark);
-  padding: 60px 0;
+  padding: 80px 0;
 }
 .stats-band-grid {
   display: grid;
@@ -565,24 +565,24 @@ nav:not(.scrolled) .mobile-toggle span { background: #ffffff; }
 }
 .stats-band-item .stat-num {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 2.8rem; font-weight: 700; color: #4caf50;
+  font-size: 3.2rem; font-weight: 700; color: #4caf50;
   line-height: 1;
 }
 .stats-band-item .stat-label {
-  font-size: 0.9rem; color: rgba(255,255,255,0.6);
-  margin-top: 8px;
+  font-size: 0.9rem; color: rgba(255,255,255,0.55);
+  margin-top: 10px; letter-spacing: 0.03em;
 }
 
 /* ── Trust ── */
 .trust { position: relative; background: var(--green-tint); }
 .trust-grid {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px; margin-top: 56px;
+  gap: 28px; margin-top: 64px;
 }
 .trust-card {
   background: var(--white);
   border: 1px solid rgba(0,0,0,0.06);
-  border-radius: var(--radius); padding: 36px 28px;
+  border-radius: var(--radius); padding: 40px 32px;
   text-align: center; transition: var(--transition);
   box-shadow: 0 2px 12px rgba(0,0,0,0.04);
 }
@@ -592,37 +592,37 @@ nav:not(.scrolled) .mobile-toggle span { background: #ffffff; }
   box-shadow: 0 8px 30px rgba(0,0,0,0.08);
 }
 .trust-icon {
-  width: 52px; height: 52px; border-radius: 50%;
+  width: 58px; height: 58px; border-radius: 50%;
   background: var(--green-glow); display: flex;
   align-items: center; justify-content: center;
-  margin: 0 auto 20px; font-size: 1.3rem;
+  margin: 0 auto 22px;
   border: 1px solid rgba(47,125,50,0.15);
 }
 .trust-card h4 {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.1rem; font-weight: 600;
-  margin-bottom: 10px;
+  font-size: 1.15rem; font-weight: 600;
+  margin-bottom: 12px;
 }
 .trust-card p {
-  color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;
+  color: var(--text-secondary); font-size: 0.92rem; line-height: 1.65;
 }
 
 /* ── Certifications Band ── */
 .cert-band {
   background: var(--dark);
-  padding: 56px 0;
+  padding: 68px 0;
 }
 .cert-band-title {
-  text-align: center; color: rgba(255,255,255,0.5);
-  font-size: 0.85rem; font-weight: 600; letter-spacing: 0.1em;
-  text-transform: uppercase; margin-bottom: 36px;
+  text-align: center; color: rgba(255,255,255,0.4);
+  font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; margin-bottom: 40px;
 }
 .cert-row {
-  display: flex; justify-content: center; gap: 48px;
+  display: flex; justify-content: center; gap: 56px;
   flex-wrap: wrap; align-items: center;
 }
 .cert-logo {
-  height: 40px; width: auto; opacity: 0.8;
+  height: 44px; width: auto; opacity: 0.75;
   transition: var(--transition); filter: brightness(1);
 }
 .cert-logo:hover { opacity: 1; }
@@ -995,7 +995,7 @@ footer {
   .trust-grid { grid-template-columns: 1fr; }
   .cta-box { padding: 48px 28px; }
   .contact-grid { gap: 24px; }
-  .section-pad { padding: 72px 0; }
+  .section-pad { padding: 80px 0; }
   .stats-band-grid { grid-template-columns: 1fr 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .team-highlights { grid-template-columns: 1fr 1fr; }
@@ -1049,7 +1049,7 @@ footer {
         </span>
       </div>
       <h1>Electrical, Heating &amp; <span class="highlight">Renewable Energy</span> Experts</h1>
-      <p>From full rewires to solar PV systems, efficient heating solutions to complete property builds — Jelvis delivers certified excellence across Chichester and West Sussex. We're NAPIT, MCS and TrustMark accredited, with over 6,000 projects completed by our in-house team.</p>
+      <p>From rewires and solar PV to heating upgrades and full property builds, Jelvis is the trusted name across Chichester and West Sussex. NAPIT, MCS and TrustMark accredited. Over 6,000 projects delivered by our own in-house team.</p>
       <div class="hero-buttons">
         <a href="#contact" class="btn btn-primary">
           Get a Free Quote
@@ -1082,14 +1082,14 @@ footer {
       <span class="badge badge-blue">What We Do</span>
     </div>
     <h2 class="section-title reveal reveal-delay-1">Complete Property<br>Solutions</h2>
-    <p class="section-sub reveal reveal-delay-2">Four specialist divisions, one trusted team. Everything delivered in-house to the highest industry standards — no subcontractors, no compromises.</p>
+    <p class="section-sub reveal reveal-delay-2">Four specialist divisions. One team that actually turns up, does the job properly, and stands behind their work. No subcontractors, ever.</p>
     <div class="services-grid">
       <div class="service-card reveal reveal-delay-1">
         <img class="service-card-img" src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&h=360&fit=crop" alt="Electrician installing a consumer unit during a domestic rewire in West Sussex" width="600" height="360" loading="lazy">
         <div class="service-card-body">
           <div class="service-icon service-icon-blue" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2L5 13.5h7.5L10.5 22 22 10H14.5z"/><circle cx="4.5" cy="13.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="22.5" cy="10" r="1.5" fill="currentColor" stroke="none"/></svg></div>
           <h3>Electrical Services</h3>
-          <p>Our NAPIT-certified electricians handle everything from complete domestic rewires and consumer unit upgrades to periodic testing, inspection and certification. We provide expert fault finding for complex electrical issues, new circuit installations, lighting design for homes and commercial properties, and 24-hour emergency callout cover across West Sussex. Every job is completed to BS 7671 wiring regulations with full certification provided.</p>
+          <p>Our NAPIT-certified electricians handle everything from complete domestic rewires and consumer unit upgrades to periodic testing, inspection and certification. We provide expert fault finding for complex electrical issues, new circuit installations, lighting design for homes and commercial properties, and 24-hour emergency callout cover across West Sussex. All work is completed to BS 7671 standards and fully certified.</p>
           <span class="service-tag service-tag-blue">NAPIT Certified</span>
         </div>
       </div>
@@ -1098,7 +1098,7 @@ footer {
         <div class="service-card-body">
           <div class="service-icon service-icon-blue" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13.5C8 9 10 7 12 4c2 3 4 5 4 9.5a4 4 0 01-8 0z"/><path d="M10.5 14c0 1.5-.75 2.5-.75 4a2.25 2.25 0 004.5 0c0-1.5-.75-2.5-.75-4"/></svg></div>
           <h3>Heating Systems</h3>
-          <p>We specialise in modern, energy-efficient heating solutions designed to reduce your energy bills. Our range includes sleek infrared heating panels, next-generation storage heaters, electric underfloor heating systems, and solar-integrated heating that works with your renewable energy setup. We'll survey your property, recommend the most cost-effective solution for your needs, and manage the full installation from start to finish.</p>
+          <p>We specialise in modern, energy-efficient heating solutions designed to reduce your energy bills. Our range includes sleek infrared heating panels, next-generation storage heaters, electric underfloor heating systems, and solar-integrated heating that works with your renewable energy setup. We survey the property, recommend what will actually save you money, and handle everything from site visit to switchover.</p>
           <span class="service-tag service-tag-blue">Energy Efficient</span>
         </div>
       </div>
@@ -1381,7 +1381,7 @@ footer {
 <!-- Chat Widget -->
 <div class="chat-label" id="chatLabel">Get a free quote</div>
 <button class="chat-fab" id="chatFab" aria-label="Open live chat with Jelvis">
-  <svg class="chat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 14.5a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/><path d="M13.5 8L10.5 12.5H13.5L11 17"/></svg>
+  <svg class="chat-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.5 2.5H3.5A1.5 1.5 0 002 4v12a1.5 1.5 0 001.5 1.5H17l4.5 4.5V4a1.5 1.5 0 00-1.5-1.5z" fill="white" opacity="0.95"/><circle cx="8" cy="10.5" r="1.3" fill="#1b5e20"/><circle cx="12" cy="10.5" r="1.3" fill="#1b5e20"/><circle cx="16" cy="10.5" r="1.3" fill="#1b5e20"/></svg>
   <svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
 </button>
 <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Live chat" aria-hidden="true">
@@ -1393,8 +1393,8 @@ footer {
     </div>
   </div>
   <div class="chat-messages" id="chatMessages" role="log" aria-live="polite">
-    <div class="chat-msg bot">Hi there! 👋 Welcome to Jelvis. How can we help you today?</div>
-    <div class="chat-msg bot" style="animation-delay:0.2s;">Whether you need electrical work, heating, solar panels, or a full renovation — we're here to help. Just type below!</div>
+    <div class="chat-msg bot">Welcome to Jelvis. What can we help you with today?</div>
+    <div class="chat-msg bot" style="animation-delay:0.2s;">Electrical, heating, solar, or a full renovation — drop us a message and we'll get straight back to you.</div>
   </div>
   <div class="chat-input-area">
     <label for="chatInput" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Type your message</label>

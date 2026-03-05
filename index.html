@@ -974,6 +974,43 @@ footer {
 .chat-send:hover { background: var(--green-dark); }
 .chat-send svg { width: 18px; height: 18px; }
 
+.chat-quick-replies {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  padding: 0 20px 16px;
+}
+.chat-qr {
+  background: var(--gray-100);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 20px; padding: 7px 14px;
+  font-size: 0.78rem; font-weight: 500;
+  color: var(--dark); cursor: pointer;
+  transition: var(--transition);
+  font-family: 'Inter', sans-serif; line-height: 1;
+}
+.chat-qr:hover {
+  background: var(--green-glow);
+  border-color: rgba(47,125,50,0.3);
+  color: var(--green);
+}
+.chat-typing {
+  display: flex; align-items: center; gap: 4px;
+  padding: 12px 16px; background: var(--gray-100);
+  border: 1px solid rgba(0,0,0,0.05);
+  border-radius: 16px; border-bottom-left-radius: 4px;
+  align-self: flex-start; width: fit-content;
+}
+.chat-typing span {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gray-300);
+  animation: typing-dot 1.2s infinite;
+}
+.chat-typing span:nth-child(2) { animation-delay: 0.2s; }
+.chat-typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typing-dot {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-4px); opacity: 1; }
+}
+
 /* ── Mobile ── */
 @media (max-width: 768px) {
   .nav-links { display: none; }
@@ -1379,7 +1416,7 @@ footer {
 </footer>
 
 <!-- Chat Widget -->
-<div class="chat-label" id="chatLabel">Get a free quote</div>
+<div class="chat-label" id="chatLabel">We're online</div>
 <button class="chat-fab" id="chatFab" aria-label="Open live chat with Jelvis">
   <svg class="chat-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.5 2.5H3.5A1.5 1.5 0 002 4v12a1.5 1.5 0 001.5 1.5H17l4.5 4.5V4a1.5 1.5 0 00-1.5-1.5z" fill="white" opacity="0.95"/><circle cx="8" cy="10.5" r="1.3" fill="#1b5e20"/><circle cx="12" cy="10.5" r="1.3" fill="#1b5e20"/><circle cx="16" cy="10.5" r="1.3" fill="#1b5e20"/></svg>
   <svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -1389,12 +1426,20 @@ footer {
     <div class="chat-avatar" aria-hidden="true">J</div>
     <div class="chat-header-info">
       <h4>Chat with Jelvis</h4>
-      <p>Typically replies instantly</p>
+      <p>Ask about our services</p>
     </div>
   </div>
   <div class="chat-messages" id="chatMessages" role="log" aria-live="polite">
     <div class="chat-msg bot">Welcome to Jelvis. What can we help you with today?</div>
     <div class="chat-msg bot" style="animation-delay:0.2s;">Electrical, heating, solar, or a full renovation — drop us a message and we'll get straight back to you.</div>
+  </div>
+  <div class="chat-quick-replies" id="chatQuickReplies">
+    <button class="chat-qr" data-msg="Get a free quote">Get a quote</button>
+    <button class="chat-qr" data-msg="Tell me about electrical services">Electrical</button>
+    <button class="chat-qr" data-msg="Tell me about solar panels">Solar PV</button>
+    <button class="chat-qr" data-msg="Tell me about heating systems">Heating</button>
+    <button class="chat-qr" data-msg="Tell me about construction">Construction</button>
+    <button class="chat-qr" data-msg="I need an emergency callout">Emergency?</button>
   </div>
   <div class="chat-input-area">
     <label for="chatInput" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Type your message</label>
@@ -1476,35 +1521,105 @@ chatFab.addEventListener('click', () => {
   if (open) chatInput.focus();
 });
 
-const botReplies = [
-  "Thanks for your message! One of our team will be in touch shortly. In the meantime, feel free to call us on 01243 786866.",
-  "Great question! We'd love to discuss this further. Could you share your postcode so we can check availability?",
-  "We offer free consultations for all renewable energy installations. Would you like to book one?",
-  "Our team typically responds within the hour during business hours (Mon-Fri, 8am-5pm). We'll get back to you ASAP!",
+const kb = [
+  {
+    keys: ['emergency', 'urgent', 'no power', 'power cut', 'sparking', 'trip', 'tripped', 'tonight', 'now', 'asap', 'immediately'],
+    reply: "For emergencies please call us directly on 01243 786866 — we run 24-hour callouts across West Sussex, 365 days a year. Don't wait for a message back on this."
+  },
+  {
+    keys: ['quote', 'price', 'cost', 'how much', 'estimate', 'rates', 'charge', 'fee'],
+    reply: "All our quotes are free and come with no obligation. Call us on 01243 786866 for the quickest response, or fill in the form below and we'll get back to you within the hour during business hours (Mon–Fri, 8am–5pm)."
+  },
+  {
+    keys: ['solar', 'panel', 'pv', 'photovoltaic', 'battery', 'storage', 'ev charger', 'electric vehicle', 'feed-in', 'renewable', 'green energy', 'mcs'],
+    reply: "We're MCS-accredited solar PV installers. We design and install bespoke systems — panels, battery storage and EV chargers — all under one roof. Every job starts with a free site survey. Call 01243 786866 to book yours, or get a quote via the form."
+  },
+  {
+    keys: ['electric', 'electrical', 'rewire', 'consumer unit', 'fuse box', 'fuse', 'circuit', 'lighting', 'socket', 'outlet', 'wiring', 'inspection', 'testing', 'eicr', 'pat', 'napit', 'bs 7671', 'fault find'],
+    reply: "Our NAPIT-certified electricians handle full rewires, consumer unit upgrades, new circuits, lighting design, fault finding, and EICR testing. All work is BS 7671 compliant with full certification provided. Call 01243 786866 or fill in the form."
+  },
+  {
+    keys: ['heat', 'heating', 'infrared', 'underfloor', 'storage heater', 'warm', 'thermal', 'radiator', 'hot water'],
+    reply: "We install modern electric heating — infrared panels, underfloor heating and next-generation storage heaters. They work brilliantly alongside solar and are far cheaper to run than older systems. We'll survey your property and recommend the right system for free."
+  },
+  {
+    keys: ['build', 'building', 'construction', 'renovation', 'refurbish', 'extension', 'loft', 'conversion', 'new build', 'project', 'planning'],
+    reply: "Our construction division covers full refurbishments, extensions, loft conversions and new builds — all done by our own team, no subcontractors. Call 01243 786866 to talk through your project and we'll advise on the best approach."
+  },
+  {
+    keys: ['area', 'cover', 'come to', 'travel', 'location', 'near', 'chichester', 'west sussex', 'hampshire', 'surrey', 'bognor', 'worthing', 'portsmouth', 'guildford', 'postcode'],
+    reply: "We're based in Chichester and cover West Sussex, Hampshire and Surrey. If you're unsure whether we reach your area, just call 01243 786866 — we'll let you know straight away."
+  },
+  {
+    keys: ['hour', 'hours', 'open', 'when', 'time', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'weekend', 'saturday', 'sunday', 'available'],
+    reply: "Our office is open Monday to Friday, 8am–5pm. For emergencies we're available 24 hours a day, every day of the year — just call 01243 786866."
+  },
+  {
+    keys: ['certif', 'accred', 'napit', 'mcs', 'trustmark', 'checkatrade', 'qualif', 'insured', 'dbs', 'vetted', 'registered', 'approved'],
+    reply: "We hold NAPIT, MCS, TrustMark and Checkatrade accreditations. Every member of our team is fully qualified, insured and DBS checked. All work comes with full certification and guarantees."
+  },
+  {
+    keys: ['grant', 'funding', 'government', 'scheme', 'subsidy', 'eco4', 'great british insulation', 'boiler upgrade', 'help to heat'],
+    reply: "There are government grant schemes available for certain solar and heating upgrades. We can advise on eligibility during a free consultation — call 01243 786866 or drop us a message via the form."
+  },
+  {
+    keys: ['subcontract', 'in-house', 'own team', 'who does', 'who installs', 'your team'],
+    reply: "Everything is carried out by our own employees — we never use subcontractors. That means consistent standards, clear accountability, and one point of contact throughout your project."
+  },
+  {
+    keys: ['phone', 'call', 'email', 'contact', 'address', 'office', 'reach', 'speak', 'talk', 'get in touch'],
+    reply: "Call us on 01243 786866 (Mon–Fri 8am–5pm, 24hr for emergencies), email office@jelvis.co.uk, or fill in the form below. We're at Unit 2, Old Barn Nursery, Fisher Lane, Chichester PO20 1YU."
+  }
 ];
-let replyIdx = 0;
 
-function sendMessage() {
-  const text = chatInput.value.trim();
-  if (!text) return;
-  const userMsg = document.createElement('div');
-  userMsg.className = 'chat-msg user';
-  userMsg.textContent = text;
-  chatMessages.appendChild(userMsg);
-  chatInput.value = '';
-  chatMessages.scrollTop = chatMessages.scrollHeight;
+const fallback = "Happy to help with that. For the quickest answer, call us on 01243 786866 (Mon–Fri 8am–5pm), or leave your details in the form below and we'll get back to you.";
 
-  setTimeout(() => {
-    const botMsg = document.createElement('div');
-    botMsg.className = 'chat-msg bot';
-    botMsg.textContent = botReplies[replyIdx % botReplies.length];
-    replyIdx++;
-    chatMessages.appendChild(botMsg);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-  }, 800 + Math.random() * 600);
+function getBotReply(text) {
+  const lower = text.toLowerCase();
+  for (const entry of kb) {
+    if (entry.keys.some(k => lower.includes(k))) return entry.reply;
+  }
+  return fallback;
 }
 
-chatSend.addEventListener('click', sendMessage);
+function addBotMsg(text) {
+  const typing = document.createElement('div');
+  typing.className = 'chat-typing';
+  typing.innerHTML = '<span></span><span></span><span></span>';
+  chatMessages.appendChild(typing);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+  setTimeout(() => {
+    typing.remove();
+    const msg = document.createElement('div');
+    msg.className = 'chat-msg bot';
+    msg.textContent = text;
+    chatMessages.appendChild(msg);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }, 900 + Math.random() * 500);
+}
+
+const quickReplies = document.getElementById('chatQuickReplies');
+
+function sendMessage(text) {
+  const msgText = text || chatInput.value.trim();
+  if (!msgText) return;
+  if (quickReplies) quickReplies.style.display = 'none';
+  const userMsg = document.createElement('div');
+  userMsg.className = 'chat-msg user';
+  userMsg.textContent = msgText;
+  chatMessages.appendChild(userMsg);
+  if (!text) chatInput.value = '';
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+  addBotMsg(getBotReply(msgText));
+}
+
+if (quickReplies) {
+  quickReplies.querySelectorAll('.chat-qr').forEach(btn => {
+    btn.addEventListener('click', () => sendMessage(btn.dataset.msg));
+  });
+}
+
+chatSend.addEventListener('click', () => sendMessage());
 chatInput.addEventListener('keydown', e => { if (e.key === 'Enter') sendMessage(); });
 
 // Smooth scroll for anchor links
